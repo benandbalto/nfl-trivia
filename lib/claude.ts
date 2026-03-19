@@ -11,7 +11,7 @@ function buildUserPrompt({ difficulty, theme }: { difficulty: Difficulty; theme?
       ? "Keep questions straightforward. Prefer widely known facts and common knowledge. Minimal multi-step reasoning."
       : difficulty === "medium"
         ? "Use a mix of well-known facts and moderately specific details. Some questions can require basic interpretation (e.g., reading a stat in context)."
-        : "Make questions tricky. Include less-obvious details, comparisons, or situations where the year/season context matters, but keep answers within the NFL world.";
+        : "Make questions really hard. Include obscure details, comparisons, or situations where the year/season context matters, but keep answers within the NFL world.";
 
   const themeLine = theme
     ? `The theme for this round is: "${theme}". Generate all questions around this theme.`
@@ -22,13 +22,13 @@ function buildUserPrompt({ difficulty, theme }: { difficulty: Difficulty; theme?
     difficultyGuide,
     "",
     themeLine,
-    "Then generate exactly 15 multiple-choice questions around that theme.",
+    "Then generate exactly 10 multiple-choice questions around that theme.",
     "",
     "For EACH question:",
     "- Provide a clear question (no duplicates).",
     "- Provide exactly 4 answer choices.",
     "- Provide answerIndex as an integer 0..3 pointing at the correct choice.",
-    "- Provide a short explanation (1-2 sentences) that teaches why the answer is correct.",
+    "- Provide a super exuberant explanation (1-2 sentences) that teaches why the answer is correct. Make it fun and engaging for the kids.",
     "",
     "Return the output as strict JSON matching this shape:",
     "{ theme: string, questions: [{ question: string, choices: [string,string,string,string], answerIndex: number, explanation: string }] }",

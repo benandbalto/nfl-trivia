@@ -18,7 +18,7 @@ export default function QuizPage() {
   const [quiz, setQuiz] = useState<TriviaQuiz | null>(null);
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<SelectedAnswers>(() =>
-    Array.from({ length: 15 }, () => null),
+    Array.from({ length: 10 }, () => null),
   );
   const [error, setError] = useState<string | null>(null);
 
@@ -51,7 +51,7 @@ export default function QuizPage() {
     }
   }, []);
 
-  const total = quiz?.questions.length ?? 15;
+  const total = quiz?.questions.length ?? 10;
   const question = quiz?.questions[current];
   const selectedIndex = answers[current] ?? null;
   const revealed = selectedIndex !== null;
