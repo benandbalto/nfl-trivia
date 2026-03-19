@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+NFL Trivia is a small web app for kids (and adults) that asks themed NFL multiple-choice trivia questions and scores you.
 
 ## Getting Started
 
@@ -14,23 +14,29 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to start a trivia round.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Set up Claude (required)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This app generates questions on demand using the Anthropic API. The API key must be set as a server-side environment variable.
 
-## Learn More
+1. Create a file named `.env.local` in the project root.
+2. Add:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+ANTHROPIC_API_KEY="your_api_key_here"
+# Optional: override the Claude model used by the generator
+CLAUDE_MODEL="claude-3-5-sonnet-latest"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Restart the dev server after updating `.env.local`.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+After you deploy, question generation happens server-side in `/api/generate-quiz`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+In your Vercel project settings:
+1. Add environment variables:
+   - `ANTHROPIC_API_KEY`
+   - (optional) `CLAUDE_MODEL`
+2. Deploy the app.
