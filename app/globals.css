@@ -1,26 +1,113 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-nfl-navy: #013369;
+  --color-nfl-navy-deep: #001a3a;
+  --color-nfl-red: #D50A0A;
+  --color-nfl-red-dark: #a00808;
+  --color-nfl-gold: #FFB612;
+  --color-nfl-gold-dim: #c99200;
+  --color-nfl-cream: #FAF9F6;
+  --color-nfl-white: #ffffff;
+  --color-nfl-field: #2e7d32;
+  --color-nfl-field-dark: #1b5e20;
+  --color-nfl-border: rgb(255 255 255 / 0.12);
+  --color-nfl-border-light: rgb(255 255 255 / 0.2);
+  --color-nfl-text: #FAF9F6;
+  --color-nfl-text-dim: rgb(250 249 246 / 0.55);
+  --font-heading: var(--font-oswald);
+  --font-mono: var(--font-source-code);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #001a3a;
+  color: #FAF9F6;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Gridiron background */
+.gridiron {
+  position: relative;
+  background-color: #1b5e20;
+}
+
+.gridiron::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    /* Yard lines - horizontal white stripes every ~60px */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 58px,
+      rgba(255, 255, 255, 0.13) 58px,
+      rgba(255, 255, 255, 0.13) 60px
+    ),
+    /* Left hash marks */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 27px,
+      rgba(255, 255, 255, 0.08) 27px,
+      rgba(255, 255, 255, 0.08) 29px,
+      transparent 29px,
+      transparent 60px
+    ),
+    /* Subtle vertical sidelines */
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.06) 0px,
+      transparent 3px,
+      transparent calc(100% - 3px),
+      rgba(255, 255, 255, 0.06) 100%
+    );
+  z-index: 0;
+}
+
+.gridiron > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Endzone stripes */
+.endzone {
+  background: repeating-linear-gradient(
+    135deg,
+    #D50A0A 0px,
+    #D50A0A 10px,
+    #a00808 10px,
+    #a00808 20px
+  );
+}
+
+/* Retro card styling */
+.retro-card {
+  background: #013369;
+  border: 2px solid rgb(255 255 255 / 0.2);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Jumbotron text effect */
+.jumbotron-text {
+  text-shadow: 0 0 20px rgba(255, 182, 18, 0.3), 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Scoreboard digit style */
+.scoreboard {
+  font-family: var(--font-source-code), 'Courier New', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* Retro button hover glow */
+.retro-btn {
+  transition: all 150ms ease;
+}
+.retro-btn:hover:not(:disabled) {
+  box-shadow: 0 0 12px rgba(255, 182, 18, 0.3);
+}
+.retro-btn:active:not(:disabled) {
+  transform: translateY(1px);
 }

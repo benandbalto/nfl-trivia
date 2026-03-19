@@ -30,38 +30,40 @@ export default function ScoreCard({
 
   return (
     <div className="space-y-5">
-      <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
-        <div className="text-sm font-semibold text-zinc-500 dark:text-zinc-400">
+      {/* Jumbotron score display */}
+      <div className="retro-card p-6 text-center">
+        <div className="font-heading text-xs font-semibold uppercase tracking-wider text-nfl-gold">
           Theme
         </div>
-        <div className="text-lg font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50">
+        <div className="font-heading text-xl font-bold uppercase tracking-wide text-nfl-cream mt-1">
           {theme}
         </div>
 
-        <div className="mt-4 flex items-end justify-between gap-4">
+        <div className="mt-6 flex items-end justify-center gap-8">
           <div>
-            <div className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+            <div className="font-heading text-xs font-semibold uppercase tracking-wider text-nfl-text-dim">
               Score
             </div>
-            <div className="text-5xl font-extrabold text-zinc-950 dark:text-zinc-50 leading-none">
+            <div className="scoreboard text-6xl font-extrabold text-nfl-gold jumbotron-text leading-none mt-1">
               {score}/{total}
             </div>
-            <div className="text-sm text-zinc-600 dark:text-zinc-300">
+            <div className="scoreboard text-sm text-nfl-text-dim mt-1">
               {percent}% correct
             </div>
           </div>
 
-          <div className="text-right">
-            <div className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+          <div>
+            <div className="font-heading text-xs font-semibold uppercase tracking-wider text-nfl-text-dim">
               Grade
             </div>
-            <div className="text-3xl font-extrabold text-zinc-950 dark:text-zinc-50">
+            <div className="scoreboard text-5xl font-extrabold text-nfl-cream jumbotron-text mt-1">
               {gradeLabel}
             </div>
           </div>
         </div>
       </div>
 
+      {/* Breakdown */}
       <div className="space-y-3">
         {breakdown.map((item, idx) => {
           const isCorrect = item.selectedIndex === item.correctIndex;
@@ -74,39 +76,41 @@ export default function ScoreCard({
           return (
             <div
               key={idx}
-              className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5"
+              className="retro-card p-5"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-2">
-                  <div className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+                  <div className="font-heading text-xs font-semibold uppercase tracking-wider text-nfl-gold">
                     Question {idx + 1}
                   </div>
-                  <div className="text-base font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50">
+                  <div className="text-base font-extrabold tracking-tight text-nfl-cream">
                     {item.question}
                   </div>
                 </div>
                 <div
                   className={[
-                    "rounded-xl px-3 py-2 text-xs font-bold border",
+                    "rounded-md px-3 py-2 text-xs font-bold font-heading uppercase tracking-wider border-2",
                     isCorrect
-                      ? "border-emerald-200 bg-emerald-50 text-emerald-900 dark:border-emerald-900/50 dark:bg-emerald-900/20 dark:text-emerald-100"
-                      : "border-red-200 bg-red-50 text-red-900 dark:border-red-900/60 dark:bg-red-900/25 dark:text-red-200",
+                      ? "border-nfl-field bg-nfl-field/20 text-nfl-cream"
+                      : "border-nfl-red bg-nfl-red/20 text-nfl-cream",
                   ].join(" ")}
                 >
                   {isCorrect ? "Correct" : "Wrong"}
                 </div>
               </div>
 
-              <div className="mt-3 text-sm text-zinc-700 dark:text-zinc-200">
+              <div className="mt-3 text-sm text-nfl-cream">
                 <div>
-                  <span className="font-semibold">Your answer:</span> {your}
+                  <span className="font-semibold text-nfl-text-dim">Your answer:</span>{" "}
+                  <span className={isCorrect ? "text-nfl-field" : "text-nfl-red"}>{your}</span>
                 </div>
                 <div>
-                  <span className="font-semibold">Correct:</span> {correct}
+                  <span className="font-semibold text-nfl-text-dim">Correct:</span>{" "}
+                  <span className="text-nfl-field">{correct}</span>
                 </div>
               </div>
 
-              <div className="mt-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-800/40 px-4 py-3 text-sm text-zinc-800 dark:text-zinc-200">
+              <div className="mt-3 rounded-md border-2 border-nfl-border-light bg-nfl-navy-deep px-4 py-3 text-sm text-nfl-cream">
                 {item.explanation}
               </div>
             </div>
@@ -116,4 +120,3 @@ export default function ScoreCard({
     </div>
   );
 }
-

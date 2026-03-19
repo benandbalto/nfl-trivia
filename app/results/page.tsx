@@ -141,46 +141,52 @@ export default function ResultsPage() {
 
   if (initialLoading) {
     return (
-      <div className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
+      <div className="min-h-full flex flex-col bg-nfl-navy-deep">
+        <div className="endzone h-3" />
         <main className="flex-1 w-full max-w-xl mx-auto px-6 py-14 space-y-3">
-          <h1 className="text-3xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50">
+          <h1 className="font-heading text-3xl font-bold uppercase tracking-wide text-nfl-cream jumbotron-text">
             NFL Trivia
           </h1>
-          <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-5 py-4 text-zinc-700 dark:text-zinc-200">
+          <div className="retro-card px-5 py-4 text-nfl-cream">
             Loading results...
           </div>
         </main>
+        <div className="endzone h-3" />
       </div>
     );
   }
 
   if (!quiz) {
     return (
-      <div className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
+      <div className="min-h-full flex flex-col bg-nfl-navy-deep">
+        <div className="endzone h-3" />
         <main className="flex-1 w-full max-w-xl mx-auto px-6 py-14 space-y-4">
-          <h1 className="text-3xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50">
+          <h1 className="font-heading text-3xl font-bold uppercase tracking-wide text-nfl-cream jumbotron-text">
             NFL Trivia
           </h1>
-          <div className="rounded-2xl border border-red-200 bg-red-50 text-red-800 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-200 px-4 py-3">
+          <div className="rounded-md border-2 border-nfl-red-dark bg-nfl-red/20 text-nfl-cream px-4 py-3">
             No results found. Start a round from the home page.
           </div>
           <button
             type="button"
             onClick={() => router.push("/")}
-            className="w-full rounded-2xl bg-zinc-950 text-white dark:bg-zinc-50 dark:text-black px-5 py-4 font-bold text-base"
+            className="retro-btn w-full rounded-md bg-nfl-red border-2 border-nfl-red-dark text-nfl-cream px-5 py-4 font-heading font-bold uppercase tracking-wider"
           >
             Back to Home
           </button>
         </main>
+        <div className="endzone h-3" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
+    <div className="min-h-full flex flex-col bg-nfl-navy-deep">
+      <div className="endzone h-3" />
+
       <main className="flex-1 w-full max-w-xl mx-auto px-6 py-10 space-y-6">
         {error ? (
-          <div className="rounded-2xl border border-red-200 bg-red-50 text-red-800 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-200 px-4 py-3">
+          <div className="rounded-md border-2 border-nfl-red-dark bg-nfl-red/20 text-nfl-cream px-4 py-3 text-sm">
             {error}
           </div>
         ) : null}
@@ -200,7 +206,7 @@ export default function ResultsPage() {
               audioRef.current?.pause();
               router.push("/");
             }}
-            className="w-1/2 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-5 py-4 font-bold text-base text-zinc-800 dark:text-zinc-200"
+            className="retro-btn w-1/2 rounded-md border-2 border-nfl-border-light bg-nfl-navy px-5 py-4 font-heading font-bold uppercase tracking-wider text-nfl-cream hover:border-nfl-gold-dim"
           >
             Home
           </button>
@@ -211,7 +217,7 @@ export default function ResultsPage() {
               playAgain();
             }}
             disabled={loading}
-            className="w-1/2 rounded-2xl bg-zinc-950 text-white dark:bg-zinc-50 dark:text-black px-5 py-4 font-bold text-base disabled:opacity-60 disabled:cursor-not-allowed"
+            className="retro-btn w-1/2 rounded-md bg-nfl-red border-2 border-nfl-red-dark px-5 py-4 font-heading font-bold uppercase tracking-wider text-nfl-cream disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? "Generating..." : "Play Again"}
           </button>
@@ -220,7 +226,8 @@ export default function ResultsPage() {
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <audio ref={audioRef} src="/nfl-on-fox-theme.mp3" preload="auto" />
       </main>
+
+      <div className="endzone h-3" />
     </div>
   );
 }
-
